@@ -39,28 +39,15 @@ public class QuizScore {
     }
 
     public static ArrayList<Integer> removeScore(ArrayList<Integer> array){
-        String keepGoing = "";
+        int low = Integer.MAX_VALUE;
 
-        while(true){
-            System.out.println("Enter Score to be removed: ");
-            int score = scanner.nextInt();
-
-            if(array.contains(score)){
-                array.remove(Integer.valueOf(score));
-            }
-            else{
-                System.out.println(score + " does not exist in the list.");
-            }
-
-            System.out.println("Would you like to remove another score? (y/n)");
-            keepGoing = scanner.next().toLowerCase();
-
-            if("y".equals(keepGoing)){
-                continue;
-            } else {
-                break;
+        for(int i = 0; i < array.size(); i++){
+            if(low > i){
+                low = i;
             }
         }
+        System.out.println("Removing "+ low +"... ");
+        array.remove(Integer.valueOf(low));
         return array;
     }
 
@@ -100,17 +87,15 @@ public class QuizScore {
     }
 
     public static void main(String[] args) {
-
         ArrayList<Integer> scoreList = new ArrayList<Integer>();
-        int average = 0;
 
         while (true) {
             int userChoice = menu();
 
             if (userChoice == 1) {
-                scoreList = addScore(scoreList);
+                addScore(scoreList);
             } else if (userChoice == 2) {
-                scoreList = removeScore(scoreList);
+                removeScore(scoreList);
 
             } else if (userChoice == 3) {
                 calcAvg(scoreList);
