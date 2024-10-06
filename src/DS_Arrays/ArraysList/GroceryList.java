@@ -17,16 +17,24 @@ public class GroceryList {
     static Scanner scanner = new Scanner(System.in);
 
 
-    public static ArrayList<String> addToList(ArrayList<String> array){
+    public static void addToList(ArrayList<String> array){
 
-        return array;
+        System.out.println("Enter a new item for your shopping list: ");
+        scanner.nextLine(); // Ensure no newline characters are left in the buffer
+        String item = scanner.nextLine();
 
+        array.add(item);
     }
 
-    public static void removeByIndex(ArrayList<String> array){
+    public static void removeByIndex(ArrayList<String> array, int target){
 
         System.out.println("Item removed");
 
+    }
+
+    public static void removeByName(ArrayList<String> array, String target){
+
+        System.out.println("Item removed");
     }
 
     public static void displayList(ArrayList<String> array){
@@ -91,8 +99,38 @@ public class GroceryList {
                     addToList(shoppingList);
                     break;
                 case 2:
-                    removeByIndex(shoppingList);
+                    System.out.println();
+                    System.out.println("Would you like to remove the item by its index or name? (index / name) ");
+                    String option = scanner.nextLine().toLowerCase();
+
+                    if (option.equals("index")) {
+                        System.out.println("Enter the index to be removed: ");
+                        int index = scanner.nextInt();
+
+                        // Clear the buffer after nextInt()
+                        scanner.nextLine();
+
+                        // Validate the index (it should be in the range of 0 to size-1)
+                        if (index < 0 || index >= shoppingList.size()) {
+                            System.out.println("Invalid index. The list has " + shoppingList.size() + " items.");
+                        } else {
+                            removeByIndex(shoppingList, index);
+                        }
+                    } else if (option.equals("name")) {
+                        System.out.println("Enter the name of the item: ");
+                        String itemName = scanner.nextLine();
+
+                        // Check if the item exists in the list
+                        if (shoppingList.contains(itemName)) {
+                            removeByName(shoppingList, itemName);
+                        } else {
+                            System.out.println("The item " + itemName + " is not in the list.");
+                        }
+                    } else {
+                        System.out.println("Invalid option. Please choose 'index' or 'name'.");
+                    }
                     break;
+
                 case 3:
                     System.out.println("What item would you like to see if it exists in the list? ");
                     String target = scanner.nextLine();
