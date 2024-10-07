@@ -20,33 +20,41 @@ public class GroceryList {
     public static void addToList(ArrayList<String> array){
 
         System.out.println("Enter a new item for your shopping list: ");
-        scanner.nextLine(); // Ensure no newline characters are left in the buffer
+        scanner.nextLine();  // Clear the buffer
         String item = scanner.nextLine();
 
-        array.add(item);
+        if (array.contains(item)) {
+            System.out.println(item + " is already in your shopping list.");
+        } else {
+            array.add(item);
+            System.out.println(item + " has been added to your shopping list.");
+        }
     }
 
     public static void removeByIndex(ArrayList<String> array, int target){
 
-        System.out.println("Item removed");
-
+        array.remove(target);
     }
 
     public static void removeByName(ArrayList<String> array, String target){
 
-        System.out.println("Item removed");
+        array.remove(target);
     }
 
-    public static void displayList(ArrayList<String> array){
-        System.out.println("Shopping list");
-        for(String item : array){
-            System.out.println("Item 1: " + item);
+    public static void displayList(ArrayList<String> array) {
+        if (array.isEmpty()) {
+            System.out.println("Your shopping list is empty.");
+        } else {
+            System.out.println("Shopping list:");
+            for (int i = 0; i < array.size(); i++) {
+                System.out.println("Item " + (i + 1) + ": " + array.get(i));
+            }
         }
     }
 
     public static Boolean isInTheList(ArrayList<String> array, String targetItem){
 
-        return true;
+        return array.contains(targetItem);
     }
 
     public static int menu() {
@@ -117,6 +125,10 @@ public class GroceryList {
                             removeByIndex(shoppingList, index);
                         }
                     } else if (option.equals("name")) {
+
+                        // Clear the buffer after nextInt()
+                        scanner.nextLine();
+
                         System.out.println("Enter the name of the item: ");
                         String itemName = scanner.nextLine();
 
@@ -142,6 +154,7 @@ public class GroceryList {
                     else{
                         System.out.println(target + " is in the list.");
                     }
+                    break;
                 case 4:
                     displayList(shoppingList);
                     break;
