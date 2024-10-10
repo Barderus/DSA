@@ -17,6 +17,9 @@ public class introStacks{
 
         System.out.println(stack + "\n");
 
+        // Getting stack size
+        System.out.println("Array size: " + stack.size());
+
         // Accessing elements of the stack:
         System.out.println("The element at the top of the stack: " + stack.peek());
 
@@ -25,7 +28,7 @@ public class introStacks{
 
         // Removing elements of the stack
         while(!stack.isEmpty()){
-            System.out.println(stack.pop());
+            System.out.println("Popping: " + stack.pop());
         }
     }
 }
