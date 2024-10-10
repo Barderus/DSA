@@ -2,7 +2,7 @@ package Assignments.Assignment3;
 
 import java.util.Stack;
 
-public class Test2 {
+public class Question2 {
     public static void main(String[] args) {
         // Create an initially empty stack
         Stack<Integer> stack = new Stack<>();
@@ -27,7 +27,7 @@ public class Test2 {
             if (!stack.isEmpty()) {
                 stack.pop();  // Pop element if the stack is not empty
             } else {
-                nullPops++;  // Count how many null pops occurred
+                nullPops++;  // Count how many null pops occurred (for empty stack)
                 System.out.println("Pop operation returned null because stack was empty.");
             }
         }
